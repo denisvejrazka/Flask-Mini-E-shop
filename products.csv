@@ -1,0 +1,2 @@
+﻿id;name;price;info;category;image
+{ "_id": 1, "name": "red-apple", "price": 2.99, "info": "Tasty, green apple", "category": "fruit", "display_name": "Red Apple"}

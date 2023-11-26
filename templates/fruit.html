@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block subtitle %}
+Ovoce
+{% endblock %}
+
+{% block main %}
+<h2>Nabídka ovoce</h2>
+<p>Na této stránce můžete zakoupt různé druhy ovoce.</p>
+<div class="products-container">
+    <span class="product-span">
+        <div class="product">
+            <img src="{{ url_for('static', filename= 'icons8-' + fruit.name + '-48.png') }}" alt="{{ fruit.name }} Image">
+            <h5 class="product-name">{{ fruit.name.upper() }}</h5>
+            <h4 class="product-price">{{ fruit.price }} CZK</h4>
+            <button class="product-btn">Koupit</button>
+        </div>
+    </span>
+</div>
+
+{% endblock %}
