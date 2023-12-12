@@ -8,15 +8,26 @@
 </head>
 <body>
     <header>
-      <h1>Prodej</h1>
-      <img id="cart" alt="cart" src="{{ url_for('static', filename= 'icons8-shopping-cart-48.png') }}" alt="">
+      <a href="{{ url_for('register') }}">Register</a>
+      <h1>Shop</h1>
     </header>
     <nav>
         <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('fruit') }}">Ovoce</a>
+        <a href="{{ url_for('fruit') }}">Fruit</a>
+        <a href="{{ url_for('vegetables') }}">Vegetables</a>
+        <a href="#">FAQ</a>
+        <a href="#">Contact</a>
+        <a href="{{ url_for('shopping_cart') }}"><img id="cart" alt="cart" src="{{ url_for('static', filename= 'icons8-shopping-cart-48.png') }}" alt=""></a>
       </nav>
       <main>
-        {% block main %}{% endblock %}
+        {% block main %}
+        <h2 class="about-us">Who we are?</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis, assumenda corporis aperiam soluta veniam quia eveniet eligendi molestiae ea vitae provident cupiditate quae dolorem! Magnam debitis quas odit ipsa illum.</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui deleniti laboriosam, et cumque vel voluptatum at eveniet dolorum possimus natus, assumenda eum sunt dolor, numquam nihil.</p>
+        <h2>Why to shop with us?</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quisquam eveniet, rem, ex inventore praesentium commodi deserunt minus quaerat officia qui delectus pariatur nulla, voluptas explicabo cumque autem veniam aliquid?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde quas dolores ratione officiis fugiat exercitationem nam iure pariatur enim impedit natus officia, adipisci rerum ipsum facere eligendi veritatis! Explicabo, repellat!</p>
+        {% endblock %}
       </main>
+
 </body>
 </html>

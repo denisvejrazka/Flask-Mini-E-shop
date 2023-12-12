@@ -4,8 +4,10 @@ body {
   }
 
   #cart{
-    width: 20;
-    height: 20;
+    max-width: 20px;
+    height: auto;
+    padding: 0;
+    margin: 0;
   }
 
   h1{
@@ -32,6 +34,45 @@ body {
     color: black;
   }
 
-  .products-container{
-    margin: 10px;
+  form{
+    display: flex;
   }
+  .products-wrapper{
+    margin: 15px;
+    display:flex;
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .product{
+    margin: 8px;
+    display: block;
+    height: fit-content;
+    width: auto;
+    padding: 5px;
+    border: 1px solid white;
+    transition: ease-in-out 0.25s;
+  }
+
+  .product:hover{
+    padding: 15px;
+    cursor: pointer;
+    transition: ease-in-out 0.25s;
+  }
+
+  .product-name, .product-price, .product-pcs, .product-btn{
+    margin: 5px;
+  }
+
+  .product-price{
+    font-size: 12px;
+  }
+
+  #out-of-stock{
+    color: red;
+  }
+
+#login{
+    text-align:right;
+  }
+

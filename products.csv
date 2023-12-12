@@ -1,2 +1,2 @@
 ﻿id;name;price;info;category;image;quantity
-{ "_id": 1, "name": "red-apple", "price": 2.99, "info": "Tasty, green apple", "category": "fruit", "display_name": "Red Apple"}
+{'_id': 2, 'name': 'green-apple', 'price': 2.99, 'info': 'Sour, green apple', 'category': 'fruit', 'display_name': 'Green Apple', 'quantity': 100}

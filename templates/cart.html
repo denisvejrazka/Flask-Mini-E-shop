@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <a class="back" href="{{ url_for('index') }}">Zpět do obchodu</a>
+    <div class="cart-wrapper">
+        <div class="cart-products">
+            {% for cart_fruit in cart %}
+            <div class="product">
+                <h5 class="product-name">{{ cart_fruit.display_name }}</h5>
+                <img src="{{ url_for('static', filename= 'icons8-' + cart_fruit.name + '-48.png') }}" alt="{{ cart_fruit.name }} Image">
+                <h4 class="product-price">{{ cart_fruit.price }} CZK</h4>
+                <input type="hidden" name="selected_fruit" value="{{ cart_fruit._id }}">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
