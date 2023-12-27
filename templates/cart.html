@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
     <title>Shopping Cart</title>
 </head>
 <body>
     <a class="back" href="{{ url_for('index') }}">Zpět do obchodu</a>
     <div class="cart-wrapper">
-        <div class="cart-products">
             {% for cart_fruit in cart %}
-            <div class="product">
-                <h5 class="product-name">{{ cart_fruit.display_name }}</h5>
-                <img src="{{ url_for('static', filename= 'icons8-' + cart_fruit.name + '-48.png') }}" alt="{{ cart_fruit.name }} Image">
-                <h4 class="product-price">{{ cart_fruit.price }} CZK</h4>
-                <input type="hidden" name="selected_fruit" value="{{ cart_fruit._id }}">
-            </div>
-            {% endfor %}
+            <form action="{{ url_for('remove_from_cart') }}" method="post">
+                <div class="product">
+                    <h5 class="product-name">{{ cart_fruit.display_name }}</h5>
+                    <img src="{{ url_for('static', filename= 'icons8-' + cart_fruit.name + '-48.png') }}" alt="{{ cart_fruit.name }} Image">
+                    <h4 class="product-price">{{ cart_fruit.price }} CZK</h4>
+                    <input type="hidden" name="remove_from_cart_id" value="{{ cart_fruit._id }}">
+                    <button class="decrement" type="submit">-</button>
+                </div>
+            </form>
+        {% endfor %}
+        <div class="subtotal">
+            <h2 class="subtotal-value">Your total is: {{ total_sum }} CZK</h2>
+            <a href="{{ url_for('form') }}"><button class="order">Delivery info form</button></a>
         </div>
     </div>
 </body>

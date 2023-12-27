@@ -1,18 +1,61 @@
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
 body {
     margin: 0;
     padding: 0;
   }
 
   #cart{
-    max-width: 20px;
-    height: auto;
-    padding: 0;
-    margin: 0;
+    width: 20px;
   }
 
-  h1{
-    text-align: center;
-  }
+ /* Add this to your existing styles or create a new CSS file */
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.product-name {
+  margin-bottom: 5px;
+}
+
+.product-price {
+  margin-bottom: 10px;
+}
+
+.out-of-stock {
+  color: #ff4d4d;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-btn {
+  padding: 8px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-btn:hover {
+  background-color: #45a049;
+}
+
 
   nav {
     background-color: white;
@@ -37,36 +80,6 @@ body {
   form{
     display: flex;
   }
-  .products-wrapper{
-    margin: 15px;
-    display:flex;
-    height: fit-content;
-    width: fit-content;
-  }
-
-  .product{
-    margin: 8px;
-    display: block;
-    height: fit-content;
-    width: auto;
-    padding: 5px;
-    border: 1px solid white;
-    transition: ease-in-out 0.25s;
-  }
-
-  .product:hover{
-    padding: 15px;
-    cursor: pointer;
-    transition: ease-in-out 0.25s;
-  }
-
-  .product-name, .product-price, .product-pcs, .product-btn{
-    margin: 5px;
-  }
-
-  .product-price{
-    font-size: 12px;
-  }
 
   #out-of-stock{
     color: red;
@@ -75,4 +88,169 @@ body {
 #login{
     text-align:right;
   }
+
+  /*FAQ*/
+  .question{
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .answer{
+    padding: 5px;
+  }
+
+/*cart*/
+.back {
+  display: block;
+  margin: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.cart-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.product-name {
+  flex-grow: 1;
+}
+
+.product-price {
+  margin-right: 10px;
+}
+
+.decrement {
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.subtotal-value {
+  font-size: 18px;
+}
+
+.order {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.order:hover {
+  background-color: #45a049;
+}
+  /*order form*/
+  main {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f2f2f2;
+}
+
+.summary-header {
+    text-align: center;
+}
+
+.back {
+    display: block;
+    margin: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px;
+}
+
+.order-form-wrapper {
+    width: 45%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.order-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-form-input {
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+.order-form p {
+    margin: 10px 0;
+}
+
+.order-btn {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.summary-cart {
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-height: fit-content;
+}
+
+.subtotal-value {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: large;
+}
 

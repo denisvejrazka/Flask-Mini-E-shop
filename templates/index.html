@@ -8,15 +8,14 @@
 </head>
 <body>
     <header>
-      <a href="{{ url_for('register') }}">Register</a>
       <h1>Shop</h1>
     </header>
     <nav>
         <a href="{{ url_for('index') }}">Home</a>
         <a href="{{ url_for('fruit') }}">Fruit</a>
         <a href="{{ url_for('vegetables') }}">Vegetables</a>
-        <a href="#">FAQ</a>
-        <a href="#">Contact</a>
+        <a href="{{ url_for('faq') }}">FAQ</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
         <a href="{{ url_for('shopping_cart') }}"><img id="cart" alt="cart" src="{{ url_for('static', filename= 'icons8-shopping-cart-48.png') }}" alt=""></a>
       </nav>
       <main>

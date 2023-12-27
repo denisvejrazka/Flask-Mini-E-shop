@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+    <title>Order</title>
+    <a class="back" href="{{ url_for('shopping_cart') }}">Back to cart</a>
+</head>
+<main>
+    <h1 class="summary-header">Summary</h1>
+    <span class="summary">
+        <div class="order-form-wrapper">
+            <form class="order-form" action="">
+                <input class="order-form-input" placeholder="E-mail" name="email" type="text">
+                <input class="order-form-input" name="name" placeholder="Name" type="text">
+                <input class="order-form-input" name="surname" placeholder="Surname" type="text">
+                <input class="order-form-input" name="phone" placeholder="Phone number" type="tel">
+                <input class="order-form-input" name="address" placeholder="Shipping address" type="text">
+                <input class="order-form-input" name="country" placeholder="Country" type="text">
+                <input class="order-form-input" name="zip" placeholder="ZIP" type="text">
+        
+                <p>Please select payment method below</p>
+                <input type="radio" id="card" name="payment-method" value="HTML">
+                <label for="card">Card</label><br>
+                <input type="radio" id="applepay" name="payment-method" value="CSS">
+                <label for="applepay">Apple Pay</label><br>
+                <input type="radio" id="banktransfer" name="payment-method" value="JavaScript">
+                <label for="banktransfer">Bank transfer</label><br>
+                <button class="order-btn">Order!</button>
+            </form>    
+        </div>
+        <div class="summary-cart">
+            {% for cart_fruit in cart %}
+                <div class="product">
+                    <h5 class="product-name">{{ cart_fruit.display_name }}</h5>
+                    <img src="{{ url_for('static', filename= 'icons8-' + cart_fruit.name + '-48.png') }}" alt="{{ cart_fruit.name }} Image">
+                </div>
+        {% endfor %}
+        </div>
+    </span>
+    <h2 class="subtotal-value">Your total is: {{ total_sum }} CZK</h2>
+</main>
+</html>

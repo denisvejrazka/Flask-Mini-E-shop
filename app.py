@@ -1,15 +1,16 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import pymongo
-
+import math
 app = Flask(__name__)
+app.secret_key = "secret_key1"
 client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
 shop = client["shop"]
-customers = shop["customers"]
 products = shop["products"]
 #orders = shop["orders"]
 
 cart = []
-products.update_one({"display_name": "Pear"}, {"$set": {"quantity": 70}})
+
+#products.update_one({"display_name": "Pear"}, {"$set": {"quantity": 70}})
 quantities = []
 def get_quantites():
     for product in products.find():
@@ -17,7 +18,10 @@ def get_quantites():
     return quantities
 get_quantites()
 
-@app.route("/")
+for product in cart:
+    print(product)
+
+@app.route("/", methods=["GET", "POST"])
 def index():
     return render_template('index.html')
 
@@ -37,10 +41,17 @@ def add_fruit_to_cart():
 
 @app.route("/cart")
 def shopping_cart():
+    global total_sum
     for product_id in cart:
-        product = products.find({"_id": product_id})
-        
-    return render_template("cart.html", cart=cart)
+        id = products.find({"_id": product_id}) 
+    total_sum = calculate_total_price(cart)
+    return render_template("cart.html", cart=cart, total_sum="%.2f" % total_sum)
+
+def calculate_total_price(cart):
+    total_price = 0
+    for product in cart:
+        total_price += product["price"]
+    return total_price
 
 @app.route("/vegetables")
 def vegetables():
@@ -56,13 +67,38 @@ def add_vege_to_cart():
         cart.append(desired_vege)
     return redirect(url_for('vegetables'))
 
-@app.route("/register")
-def register():
-    return render_template("register.html")
+@app.route("/faq")
+def faq():
+    return render_template("faq.html")
 
-@app.route("/login")
-def login():
-    return render_template("login.html")
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+@app.route("/cart", methods=["GET", "POST"])
+def remove_from_cart():
+    global total_sum
+    selected_product = request.form.get("remove_from_cart_id")
+    for product in cart:
+        if product["_id"] == int(selected_product):
+            cart.remove(product)
+            print(f"Product {selected_product} removed from cart")
+            desired_prod = products.find_one({"_id": int(selected_product)})
+            total_sum = total_sum-desired_prod["price"]
+            products.update_one({"_id": int(selected_product)}, {"$inc": {"quantity": +1}})
+            break  # Stop the loop once the product is removed
+
+    return render_template("cart.html", cart=cart, total_sum=total_sum)
+
+@app.route("/form.html")
+def form():
+    global total_sum
+    for product_id in cart:
+        id = products.find({"_id": product_id}) 
+    total_sum = calculate_total_price(cart)
+    return render_template("form.html", cart=cart, total_sum="%.2f" % total_sum)
+
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
