@@ -11,7 +11,7 @@
     <h1 class="summary-header">Summary</h1>
     <span class="summary">
         <div class="order-form-wrapper">
-            <form class="order-form" action="">
+            <form class="order-form" action="{{ url_for('send_info') }}"" method="POST">
                 <input class="order-form-input" placeholder="E-mail" name="email" type="text">
                 <input class="order-form-input" name="name" placeholder="Name" type="text">
                 <input class="order-form-input" name="surname" placeholder="Surname" type="text">
@@ -40,5 +40,6 @@
         </div>
     </span>
     <h2 class="subtotal-value">Your total is: {{ total_sum }} CZK</h2>
+    <p>{{ error_message }}</p>
 </main>
 </html>

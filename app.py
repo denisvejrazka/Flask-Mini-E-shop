@@ -6,7 +6,7 @@ app.secret_key = "secret_key1"
 client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
 shop = client["shop"]
 products = shop["products"]
-#orders = shop["orders"]
+orders = shop["orders"]
 
 cart = []
 
@@ -98,6 +98,48 @@ def form():
     total_sum = calculate_total_price(cart)
     return render_template("form.html", cart=cart, total_sum="%.2f" % total_sum)
 
+@app.route("/form.html", methods=["POST"])
+def send_info():
+    if request.method == 'POST':
+        email, name, surname, phone, address, country, zip_code, payment_method = (
+            request.form.get('email'),
+            request.form.get('name'),
+            request.form.get('surname'),
+            request.form.get('phone'),
+            request.form.get('address'),
+            request.form.get('country'),
+            request.form.get('zip'),
+            request.form.get('payment-method'),
+        )
+
+        # Check if any required field is empty
+        if any(not _ for _ in [email, name, surname, phone, address, country, zip_code, payment_method]):
+            error_message = 'Please fill in all required fields.'
+            total_sum = calculate_total_price(cart)
+            return render_template('form.html', error_message=error_message, cart=cart, total_sum="%.2f" % total_sum)
+        else:
+            #for product_id in cart:
+                #product = products.find_one({"_id": product_id})
+            orders.insert_one({
+                "product_name": name,
+                "customer_name": name,
+                "customer_surname": surname,
+                "address": address,
+                "zip": zip_code,
+                "country": country,
+                "number": phone
+            }) 
+            return render_template('summary.html',email=email, name=name, surname=surname, phone=phone, address=address, country=country, zip_code=zip_code, payment_method=payment_method)
+
+def print_objects_from_db():
+    for x in orders.find():
+        print(x)
+print_objects_from_db()
+
+
+@app.route("/summary.html")
+def summary():
+    return render_template("summary.html")
 
 
 if __name__ == "__main__":
